@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="filter">
+    <div class="row">
+      <div class="col-md-4">
+        <label for="id" class="form-label" title="Filter by Image ID">Image ID:</label>
+        <input type="number" id="id" [(ngModel)]="filterCriteria.id" (ngModelChange)="applyFilter()" class="form-control" placeholder="Filter by ID" />
+      </div>
+      <div class="col-md-4">
+        <label for="author" class="form-label" title="Filter by Author">Author:</label>
+        <input type="text" id="author" [(ngModel)]="filterCriteria.author" (ngModelChange)="applyFilter()" class="form-control" placeholder="Filter by Author" />
+      </div>
+      <div class="col-md-4">
+        <label for="text" class="form-label" title="Filter by Text">Text:</label>
+        <input type="text" id="text" [(ngModel)]="filterCriteria.text" (ngModelChange)="applyFilter()" class="form-control" placeholder="Filter by Text" />
+      </div>
+    </div>
+    <button (click)="clearFilter()" class="btn btn-secondary">Clear Filter</button>
+  </div>
+  <div class="image-list">
+    <h2>Favorite Images</h2>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let image of filteredImages">
+        <div class="image card mx-auto">
+      <img [src]="image.photo" alt="{{ image.author }}" class="img-fluid"/>
+      <div class="card-body">
+        <h5 class="card-title">{{ image.author }}</h5>
+        <p class="card-text">{{ image.text }}</p>
+        <button (click)="removeFromFavorites(image.id)" class="btn btn-danger">Remove from Favorites</button>
+      </div>
+    </div>
+  </div>
+</div>
